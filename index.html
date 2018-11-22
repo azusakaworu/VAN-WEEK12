@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+    <title>Vids</title>
+    
+   <!-- <?php include "db/connect.php";?>-->
+</head>
+
+<body>
+       <main id="app" >
+           <h4 class="welcome-message">{{mainmessage}}</h4>
+           <ul>
+               <li v-for="video in videodata">
+                   <button :data-movie="video.id" v-on:click="fetchMore" class="more-details">More Detials...</button>
+                   <a :href="video.vid_path" v-on:click="loadMovie">
+                       <img :src="'images/'+ video.vid_thumb" alt="">
+                   </a>
+                   <p>put genre data here</p><!--add a fiel to the DB-->
+
+               </li>
+           </ul>
+
+           <p class="instructions">
+               <i>Click on a poster to preview the mociel</i>
+           </p>
+
+           <section class="hidden-movies" :class="{'show-movie':showDetails}">
+               <h3 class="movie-title">{{videotitle}}</h3>
+               <video :src="'video/'+ videosource" autoplay></video>
+               <div class="movie-details">
+                   <p>{{videodescription}}</p>
+
+               </div>
+           </section>
+
+           <div class="up-arrow">
+               <span v-on:click="scrollBackUp" :class="{'show-scroller':showDetails}"></span>
+         </div>
+             
+
+
+       </main>
+
+
+
+
+
+	
+	<script src="js/main.js"></script>
+</body>
+</html>
